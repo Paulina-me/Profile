@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haripriya R - Data Analyst Portfolio</title>
+   <style>
+    /* ========================================================================= */
+    /* I. GLOBAL STYLING & PROFESSIONAL COLOR PALETTE (Wix-inspired)             */
+    /* ========================================================================= */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth; 
+    }
+
+    body {
+        /* Wix-inspired Light Yellow/Cream Background */
+        font-family: 'Poppins', sans-serif;
+        background-color: #F8F7E8; /* Soft, very light yellow/cream */
+        color: #333333; /* Dark text for readability */
+        text-align: center;
+        overflow-x: hidden;
+    }
+
+    /* ========================================================================= */
+    /* II. HEADER STYLING FIX (Image Layering and Positioning)                   */
+    /* ========================================================================= */
+
+    header {
+        /* Set the dark image as the background */
+        background-image: url('portfo img.jpg'); 
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        
+        /* Crucial: Set height and positioning context for the banner area */
+        height: 350px;
+        padding: 0; 
+        position: relative; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 1. Profile Image Positioning & Style */
+    header img {
+        width: 150px;
+        height: 210px;
+        border: 4px solid #00FFFF; /* Bright Cyan */
+        border-radius: 40%; 
+        object-fit: cover;
+        
+        /* Center the image */
+        position: absolute;
+        top: 50px; 
+        left: 50%;
+        transform: translateX(-50%); 
+        z-index: 20; 
+        transition: transform 0.3s ease;
+    }
+
+    /* 2. Name (h1) Positioning & Style */
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #00FFFF; /* Bright Cyan/White for high contrast */
+        letter-spacing: 1px;
+        
+        /* Crucial for readability against busy background */
+        text-shadow: 0 0 5px #000000, 0 0 10px #000000; 
+        
+        /* Center and position below the image */
+        position: absolute;
+        top: 260px; 
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        margin: 0; 
+    }
+
+    /* 3. Typing Text Positioning & Style */
+    .typing-text {
+        font-size: 24px;
+        font-weight: 600;
+        color: #FFD700; /* Gold/Bright Yellow */
+        height: 35px;
+        display: inline-block;
+        
+        /* Crucial for readability */
+        text-shadow: 0 0 3px #000000; 
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid #FFD700; 
+        
+        /* Center and position below the name */
+        position: absolute;
+        top: 305px; 
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        animation: blink-cursor 0.8s step-end infinite;
+    }
+
+    /* Ensure hover and zoom styles work correctly with the new positioning */
+    header img:hover {
+        transform: translateX(-50%) scale(1.1);
+    }
+
+    header img.zoomed {
+        transform: translateX(-50%) scale(1.5) !important; 
+        border-color: #A06730; 
+        cursor: zoom-out;
+    }
+
+    /* ========================================================================= */
+    /* III. NAVIGATION BAR (Fixed Below Header)                                  */
+    /* ========================================================================= */
+
+.nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.95); 
+    
+    /* 1. Remove padding, use a fixed height and center content vertically */
+    padding: 0; 
+    height: 60px;
+    align-items: center; 
+    
+    /* 2. CRITICAL CHANGE: Use margin-top to create the initial space */
+    margin-top: 10px; 
+
+    /* 3. Set sticky position (This will work best if top is 0 now) */
+    position: sticky;
+    top: 0; 
+    
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+    .nav a {
+        color: #555555; 
+        padding: 15px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .nav a:hover {
+        background-color: #EFEFE0; 
+        color: #2F4F71; 
+    }
+
+    /* FIX: scroll-margin-top ensures fixed navbar doesn't hide anchor links */
+section[id] {
+    /* Reset to nav bar height only */
+    scroll-margin-top: 60px; 
+}
+    /* ========================================================================= */
+    /* IV. SECTION STYLING & SCROLL ANIMATION                                    */
+    /* ========================================================================= */
+    
+    section {
+        padding: 40px 20px;
+        margin: 30px auto;
+        width: 90%;
+        max-width: 1100px;
+        border-radius: 12px;
+        background-color: #C0D3E8; /* Muted Dusty Blue */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        
+        opacity: 0;
+        transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+        color: #333333;
+    }
+
+    section:nth-of-type(odd) {
+        transform: translateX(-100px); 
+    }
+
+    section:nth-of-type(even) {
+        transform: translateX(100px); 
+    }
+    
+    .show {
+        opacity: 1;
+        transform: translateX(0) !important; 
+    }
+    
+    /* Section Specific Styles (Muted Wix Palette) */
+    
+    #portfolio { background-color: #C0D3E8; color: #333; }
+    #experience { background-color: #C0D3E8; color: #333; } 
+    #certificates { background-color: #C0D3E8; color: #333; }
+    #education { background-color: #C0D3E8; color: #333; }
+    #skills { background-color: #C0D3E8; color: #333; }
+    #achievements { background-color: #C0D3E8; color: #333; }
+    #Projects { background-color: #C0D3E8; color: #333; }
+    #contact { background: linear-gradient(135deg, #2F4F71, #6A8EAD); color: white; }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 25px;
+        font-weight: 700;
+        color: #2F4F71; 
+    }
+    
+    h3 {
+        color: #A06730;
+    }
+
+    #portfolio p { font-size: 18px; line-height: 1.8; padding: 0 5%; color: #333; }
+
+    /* --- Grid & Box Styles (Detailed) --- */
+    .experience-grid, .cert-grid, .education-container, .skills-container, .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin: 0 auto;
+        padding-top: 10px;
+    }
+
+    .experience-box, .cert-box, .education-item, .skill-column, .achievement-box, .project-box {
+        background-color: #E6EDF5; /* Lighter shade of the dusty blue for inner boxes */
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        text-align: left;
+        color: #333;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease; 
+    }
+    
+    /* Hover Effect Applied to ALL Boxes */
+    .experience-box:hover, .cert-box:hover, .education-item:hover, .skill-column:hover, .achievement-box:hover, .project-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
+    }
+
+    /* --- Specific Border Styles --- */
+    /* Experience & Projects (Top Accent) */
+    .experience-box { border-top: 4px solid #6A8EAD; }
+    .project-box { border-top: 4px solid #A06730; }
+
+    /* Education (Left Accent, Nth Child) */
+    .education-item:nth-child(1) { border-left: 5px solid #2F4F71; }
+    .education-item:nth-child(2) { border-left: 5px solid #A06730; }
+    .education-item:nth-child(3) { border-left: 5px solid #6D9773; }
+
+    /* Skills (Left Accent, Nth Child) */
+    .skill-column { border-left: none; }
+    .skill-column:nth-child(1) { border-left: 5px solid #2F4F71; }
+    .skill-column:nth-child(2) { border-left: 5px solid #A06730; }
+    .skill-column:nth-child(3) { border-left: 5px solid #6D9773; }
+
+    /* Certifications (Left Accent) */
+    .cert-box { border-left: 5px solid #6A8EAD; }
+    .ml-skill { border-left-color: #A06730; } 
+    .coding-skill { border-left-color: #6D9773; } 
+    .ai-skill { border-left-color: #8C6BB0; } 
+
+    /* Achievements (Bottom Accent) */
+    .achievement-box { border-bottom: 4px solid #A06730; text-align: center; }
+
+    #contact h2 { 
+    color: white;
+    }
+
+    /* Resetting List and Item Styles */
+    ul { list-style-type: disc; padding-left: 20px; }
+    li { font-size: 14px; margin-bottom: 6px; line-height: 1.5; }
+    h3 { color: #A06730; font-size: 20px; margin-bottom: 3px; }
+    h4 { color: #555; font-size: 14px; margin-bottom: 10px; }
+    .skill-column h3 { color: #A06730; } /* Special color for skill column headings */
+
+/* --- Contact & Footer --- */
+/* ... (Ensure the footer background color is still dark muted blue #2F4F71 if you use one footer) ... */
+
+.cv-button {
+    /* Set colors as requested */
+    background-color: #A06730; /* Earthy brown/orange for the box */
+    color: white; /* White text color */
+    
+    /* Standard button styling */
+    padding: 12px 25px;
+    border: none;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600; /* Make the text bold */
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    
+    /* Display properties */
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.cv-button:hover {
+    /* Slightly darker hover for the button */
+    background-color: #8C592A; 
+}
+
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        h1 { font-size: 32px; top: 180px; }
+        .typing-text { font-size: 20px; top: 220px; }
+        header { height: 260px; }
+        header img { width: 120px; height: 120px; top: 30px; }
+        .nav a { font-size: 12px; padding: 15px 10px; }
+        .experience-grid, .cert-grid, .education-container, .skills-container, .projects-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+</style>
+</head>
+<body>
+
+    <header>
+        <img src="profile.jpeg" alt="Profile Picture" onclick="toggleZoom(this)">
+        <h1>Haripriya R</h1>
+        <p class="typing-text"></p>
+    </header>
+
+    <nav class="nav">
+        <a href="#portfolio">About Me</a>
+        <a href="#experience">Experience</a>
+        <a href="#certificates">Certification</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#Projects">Projects</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="portfolio">
+        <h2>About Me</h2>
+        <p>I'm a <b>Junior Data Analyst</b> and <b>Data Science student</b> with a keen interest in market research data, consumer analytics, and process optimization. I have strong skills in <b>data processing, validation, and visualization</b>, and I’m passionate about transforming raw data into meaningful insights that support business intelligence and data-driven decision-making. I focus on data accuracy, quality analysis, and <b>operational efficiency</b>, and I <b>continuously learn</b> new analytical tools to ensure high-quality reporting and impactful data outcomes.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-box">
+                <h3>Data Analyst — ICF IT Centre</h3>
+                <h4>Chennai | 05/2025 – 06/2025</h4>
+                <ul>
+                    <li>Engineered <b>40 reports</b> analyzing employee attendance data to identify <b>patterns</b> and enhance workforce efficiency.</li>
+                    <li>Executed analysis using <b>Excel (Pivot Tables)</b>, <b>Power BI</b>, and <b>Looker Studio</b> to deliver actionable insights on key operational metrics.</li>
+                    <li>Designed and showcased <b>interactive dashboards</b> to monitor compliance and support <b>data-driven decision-making</b> across departments.</li>
+                </ul>
+            </div>
+
+            <div class="experience-box">
+                <h3>Data Analytics - Virtual Internship — CodeAlpha</h3>
+                <h4>20/09/2025 – 20/10/2025</h4>
+                <ul>
+                    <li>Built a <b>full end-to-end Data Pipeline</b> (Scraping &rarr; EDA &rarr; Vis &rarr; NLP) on global companies and text data.</li>
+                    <li>Visualized findings (<b>Matplotlib</b>) and performed <b>Sentiment Analysis</b> (NLTK VADER) with <b>48% positive sentiment</b>.</li>
+                    <li>Conducted <b>EDA</b> to find the <b>Vitol efficiency outlier</b> ($212M/employee) and key <b>Revenue-Profit correlation (0.35)</b>.</li>
+                </ul>
+            </div>
+
+            <div class="experience-box">
+                <h3>Power BI - Virtual Internship — CodeAlpha</h3>
+                <h4>20/09/2025 – 20/10/2025</h4>
+                <ul>
+                    <li>Built <b>Financial Health Dashboard</b>, confirming <b>44.1% YoY growth</b> and using <b>DAX</b> to forecast profitability decline by late 2025.</li>
+                    <li>Designed <b>HR Workforce Optimization Dashboard</b> with <b>Star Schema</b>, exposing <b>16.12% Turnover Rate</b> driven by Tech/Sales departments.</li>
+                    <li>Delivered <b>actionable insights</b> across both projects, identifying <b>HR Department</b> for immediate cost-efficiency and morale interventions.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="certificates">
+        <h2>Certification</h2>
+        <div class="cert-grid">
+            <div class="cert-box data-skill">
+                <h3>Data Analytics using Excel</h3>
+                <h4>Anna Adarsh College For Women</h4>
+                <p>Hands-on skills in <b>data cleaning, analysis, visualization, pivot tables</b>, and formula-based insights.</p>
+            </div>
+
+            <div class="cert-box ml-skill">
+                <h3>Introduction to Machine Learning (Elite)</h3>
+                <h4>NPTEL - IITM (12 Weeks)</h4>
+                <p>Strong grounding in <b>supervised/unsupervised learning, classification, regression, model evaluation</b>, and algorithmic intuition.</p>
+            </div>
+
+            <div class="cert-box coding-skill">
+                <h3>OOPs Using Python</h3>
+                <h4>Naan Mudhalvan</h4>
+                <p>Object oriented programming concepts learned that include <b>classes, objects, inheritance, and polymorphism</b>.</p>
+            </div>
+
+            <div class="cert-box coding-skill">
+                <h3>Basics of Python</h3>
+                <h4>Naan Mudhalvan</h4>
+                <p>Fundamentals of Python, <b>data types, loops</b>, and basic programming concepts.</p>
+            </div>
+
+            <div class="cert-box ai-skill">
+                <h3>Generative AI with Cloud</h3>
+                <h4>IBM SkillCloud</h4>
+                <p>Knowledge of <b>generative AI, cloud integration</b>, and AI-powered applications.</p>
+            </div>
+
+            <div class="cert-box method-skill">
+                <h3>Introduction to Agile Methodology</h3>
+                <h4>Naan Mudhalvan</h4>
+                <p>Understanding <b>Agile principles, Scrum framework</b>, and iterative project management.</p>
+            </div>
+            
+            <div class="cert-box domain-skill">
+                <h3>E-commerce</h3>
+                <h4>University of Madras</h4>
+                <p>Understanding of the principles and practices of <b>E-Commerce</b>.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-container">
+            <div class="education-item">
+                <h3>UG</h3>
+                <p><b>University of Madras - Anna Adarsh College for Women</b><br>B.Sc. Computer Science with Data Science | 80.68%</p>
+            </div>
+            <div class="education-item">
+                <h3>12th</h3>
+                <p><b>SKNSPMC Vivekananda School (CBSE)</b><br>Bio-Maths | 75%</p>
+            </div>
+            <div class="education-item">
+                <h3>10th</h3>
+                <p><b>Smt. Durgadevi Choudhary Vivekananda Vidyalaya School (CBSE)</b><br>91%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill-column">
+                <h3>Technical Skills</h3>
+                <ul>
+                    <li><b>Data Cleaning & Pre-processing</b></li>
+                    <li><b>Data Processing (ETL)</b></li>
+                    <li><b>SQL</b></li>
+                    <li><b>Python (Pandas, NumPy, Matplotlib, Seaborn)</b></li>
+                    <li><b>R Programming</b></li>
+                    <li><b>Data Visualization & Reporting</b></li>
+                    <li><b>Basic Statistics & Analysis</b></li>
+                </ul>
+            </div>
+
+            <div class="skill-column">
+                <h3>Tools</h3>
+                <ul>
+                    <li><b>Advanced Excel (Pivot Tables, VLOOKUP, Power Query)</b></li>
+                    <li><b>Power BI</b></li>
+                    <li><b>Tableau</b></li>
+                    <li><b>MySQL</b></li>
+                    <li><b>Google Sheets</b></li>
+                    <li><b>Looker Studio</b></li>
+                </ul>
+            </div>
+
+            <div class="skill-column">
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li><b>Analytical Thinking</b></li>
+                    <li><b>Problem Solving</b></li>
+                    <li><b>Attention to Detail</b></li>
+                    <li><b>Team Collaboration</b></li>
+                    <li><b>Time Management</b></li>
+                    <li><b>Fast Learning Ability</b></li>
+                    <li><b>Clear Communication</b></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="Projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-box">
+                <h3>End-to-End Data Analytics Pipeline</h3>
+                <ul>
+                    <li>Built full analytics pipeline: Data scraping &rarr; Cleaning &rarr; EDA &rarr; Visualization &rarr; NLP sentiment analysis</li>
+                    <li>Used Python libraries: Requests, Pandas, Matplotlib, Seaborn, NLTK</li>
+                    <li>Delivered insights: Sector efficiency, Outlier detection (Vitol), >48% positive sentiment</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>Financial Health Dashboard — Power BI</h3>
+                <ul>
+                    <li>Designed decision-support dashboard with Star Schema & DAX-driven finance metrics</li>
+                    <li>Built models from GL data for P&L, forecasting, and rolling trends</li>
+                    <li>Identified 44.1% YoY growth and flagged 2025 risk zones for smart cost control</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>HR Workforce Optimization Dashboard — Power BI</h3>
+                <ul>
+                    <li>Built HR analytics system for attrition, morale, and performance evaluation</li>
+                    <li>Implemented DAX metrics: Turnover Rate, Avg Performance Rating, KPI visuals</li>
+                    <li>Exposed 16.12% attrition risk in Tech & Sales, enabling predictive hiring</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>IoT Based Smart Irrigation Working Model</h3>
+                <ul>
+                    <li>Built real-time irrigation automation using ESP32, soil sensors, and Blynk IoT</li>
+                    <li>Enabled automatic pump control with remote override & smart monitoring</li>
+                    <li>Improved water use efficiency and demonstrated sustainable IoT agriculture</li>
+                </ul>
+            </div>
+
+            <div class="project-box">
+                <h3>Decentralized Peer Review Platform</h3>
+                <ul>
+                    <li>Built submission + blind review + scoring platform for independent researchers</li>
+                    <li>Implemented using HTML, CSS, JavaScript, Flask (~80% complete)</li>
+                    <li>Enables transparent, accessible research review beyond traditional journals</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+<section id="achievements">
+        <h2>Achievements</h2>
+        <div class="achievements-grid">
+            
+            <div class="achievement-box">
+                <h3>Academic Excellence</h3>
+                <p>Centum in <b>Statistics-I</b>.</p>
+            </div>
+            
+            <div class="achievement-box">
+                <h3>IoT & Innovation</h3>
+                <p>Won <b>First place</b> in <b>IoT Based Smart Irrigation System</b>.</p>
+            </div>
+            
+            <div class="achievement-box">
+                <h3>Data Competition</h3>
+                <p>Won<b>Third place</b> in <b>Data Cleaning & Data Visualization (Power BI)</b>.</p>
+            </div>
+            
+            <div class="achievement-box">
+                <h3>Research Publication</h3>
+                <p>Published a paper on <b>Classification of MRI Images using Deep Learning Networks</b>.</p>
+            </div>
+            
+            <div class="achievement-box">
+                <h3>Presentation & Outreach</h3>
+                <p>Participated in <b>Paper Presentation on DEEPFAKE</b>.</p>
+            </div>
+            
+            <div class="achievement-box">
+                <h3>Tech Involvement</h3>
+                <p>Regular participant in <b>Hackathons</b>.</p>
+            </div>
+            
+        </div>
+    </section>
+   
+    <section id="contact">
+        <h2>Contact</h2>
+        <p><b>Email: <a href="mailto:hari20060102@gmail.com" style="color: #E6EDF5;">hari20060102@gmail.com</a></b></p>
+        <p><b>Phone number: 7010722471</b></p>
+    </section>
+
+   <footer>
+        <a href="Resume.pdf" class="cv-button" target="_blank">Download CV</a>
+        <p>&copy; 2025 Haripriya R</p>
+    </footer>
+
+    <script>
+        // === Typing Animation ===
+        const words = ["Data Analyst", "SQL Developer & Excel Specialist", "Power BI Developer", "Data Cleaning & Validation", "Data Extraction & Transformation (ETL)"];
+        let i = 0;
+        let j = 0;
+        let currentWord = "";
+        let isDeleting = false;
+
+        function typeEffect() {
+            currentWord = words[i];
+            let displayText = currentWord.substring(0, j);
+            document.querySelector(".typing-text").textContent = displayText;
+
+            if (!isDeleting && j < currentWord.length) {
+                j++;
+                setTimeout(typeEffect, 100);
+            } else if (isDeleting && j > 0) {
+                j--;
+                setTimeout(typeEffect, 50);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    i = (i + 1) % words.length;
+                }
+                setTimeout(typeEffect, 1000);
+            }
+        }
+
+// === Profile Picture Zoom Toggle ===
+    function toggleZoom(img) {
+        img.classList.toggle('zoomed');
+    }
+        // === Scroll Reveal Animation ===
+        function reveal() {
+            let sections = document.querySelectorAll("section");
+            let windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                let sectionTop = section.getBoundingClientRect().top;
+                let sectionVisible = 150; // Offset
+
+                if (sectionTop < windowHeight - sectionVisible) {
+                    section.classList.add("show");
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            typeEffect();
+            reveal(); // Run on load to show the first section
+        });
+        window.addEventListener("scroll", reveal);
+    </script>
+</body>
+</html>
